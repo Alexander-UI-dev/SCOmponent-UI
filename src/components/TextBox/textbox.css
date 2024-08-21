@@ -1,0 +1,31 @@
+.sco-text_box-default {
+    margin: 15px;
+}
+
+.sco-text_box {
+    --quantity: 2;
+    display: -webkit-box;
+    -webkit-line-clamp: var(--quantity);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.sco-text_box__rounded-xs {
+    border-radius: 4px;
+}
+
+.sco-text_box__rounded-sm {
+    border-radius: 2px;
+}
+
+.sco-text_box__rounded-lg {
+    border-radius: 8px;
+}
+
+.sco-text_box__rounded-xl {
+    border-radius: 24px;
+}
+
+.sco-text_box__circle {
+    border-radius: 50%;
+}

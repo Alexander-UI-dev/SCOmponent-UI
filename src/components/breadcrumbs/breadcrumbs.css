@@ -1,0 +1,41 @@
+.sco-breadcrumbs {
+    padding: 10px;
+    font-family: system-ui, sans-serif;
+}
+
+.sco-breadcrumbs__link {
+    text-decoration: none;
+    color: #999999;
+}
+
+.sco-breadcrumbs__item {
+    --divider-item: '/';
+    display: inline-block;
+}
+
+.sco-breadcrumbs__item:not(:last-of-type)::after {
+    content: var(--divider-item);
+    margin: 0 5px;
+    color: #cccccc;
+}
+
+.sco-breadcrumbs__link--active {
+    color: #009578;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.sco-breadcrumbs__link:hover, .sco-breadcrumbs__link--active:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.sco-disabled-breadcrumbs {
+    color: #c2c2c2;
+    cursor: not-allowed;
+}
+
+.sco-disabled-breadcrumbs:hover {
+    text-decoration: none;
+}
