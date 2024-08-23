@@ -13,3 +13,303 @@ package.json
 package-lock.json
 webpack.config.js
 .gitignore
+
+export class Btn {
+    constructor(data, id, not_new_button = undefined) {
+        //TODO сделать свойство margin and padding
+        this.id = id;
+        if(not_new_button === undefined) {
+            if(data.href) {
+                if (data.target) {
+                    document.getElementById('main').innerHTML += `
+                        <form action="${data.href}" target="${data.target}">
+                            <button class="button" id="${id}"><span class="button__content"></span></button>
+                        </form>
+                    `;
+                } else {
+                    document.getElementById('main').innerHTML += `
+                        <form action="${data.href}">
+                            <button class="button" id="${id}"><span class="button__content"></span></button>
+                        </form>
+                    `;
+                }
+            } else {
+                document.getElementById('main').innerHTML += `
+                    <button class="button" id="${id}"><span class="button__content"></span></button>
+                `;
+            }
+        }
+
+        if(data.type) {
+            if(data.type === "outlined") {
+                document.getElementById(id).style = "";
+                document.getElementById(id).style.color = "black";
+                document.getElementById(id).classList.add("button-variant--outline");
+            }
+            if(data.type === "text") {
+                document.getElementById(id).style = "";
+                document.getElementById(id).style.color = "black";
+                document.getElementById(id).classList.add("button-variant--text");
+            }
+            if(data.type === "flat") {
+                document.getElementById(id).style = "";
+                document.getElementById(id).style.color = "black";
+                document.getElementById(id).classList.add("button-variant--flat");
+            }
+            if(data.type === "plain") {
+                document.getElementById(id).style = "";
+                document.getElementById(id).classList.add("button-variant--plain");
+            }
+            if(data.type === "tonal") {
+                document.getElementById(id).style = "";
+                document.getElementById(id).classList.add("button-variant--tonal");
+                if(not_new_button !== true) document.getElementById(id).innerHTML += `<span class="button__underlay"></span>`;
+            }
+            if(data.type !== "default" && data.type !== "text" && data.type !== "flat" && data.type !== "outlined" && data.type !== "plain" && data.type !== "tonal") {
+                console.warn("[SCOmponent UI warn]: This type does not exist!");
+            }
+        }
+        //TODO badge
+        if(data.badge) {
+
+        }
+        //TODO stacked
+        if(data.stacked) {
+            document.getElementById(id).style.height = "72px"
+        }
+
+        if(data.text) document.querySelector(`#${id} .button__content`).textContent = data.text;
+        if(data.border) {
+            if (data.type !== "tonal" && data.type !== "plain" &&
+                data.type !== "flat" && data.type !== "text") {
+                document.getElementById(id).style.border = data.border;
+            } else {
+                console.warn("[SCOmponent UI warn]: The border property cannot be used in buttons with the text, flat, tonal and plain type!");
+            }
+        }
+        if(data.border_top) {
+            if (data.type !== "tonal" && data.type !== "plain" &&
+                data.type !== "flat" && data.type !== "text") {
+                document.getElementById(id).style.borderTop = data.border_top;
+            } else {
+                console.warn("[SCOmponent UI warn]: The border_top property cannot be used in buttons with the text, flat, tonal and plain type!");
+            }
+        }
+        if(data.border_right) {
+            if (data.type !== "tonal" && data.type !== "plain" &&
+                data.type !== "flat" && data.type !== "text") {
+                document.getElementById(id).style.borderRight = data.border_right;
+            } else {
+                console.warn("[SCOmponent UI warn]: The border_right property cannot be used in buttons with the text, flat, tonal and plain type!");
+            }
+        }
+        if(data.border_left) {
+            if (data.type !== "tonal" && data.type !== "plain" &&
+                data.type !== "flat" && data.type !== "text") {
+                document.getElementById(id).style.borderLeft = data.border_left;
+            } else {
+                console.warn("[SCOmponent UI warn]: The border_left property cannot be used in buttons with the text, flat, tonal and plain type!");
+            }
+        }
+        if(data.border_bottom) {
+            if (data.type !== "tonal" && data.type !== "plain" &&
+                data.type !== "flat" && data.type !== "text") {
+                document.getElementById(id).style.borderBottom = data.border_bottom;
+            } else {
+                console.warn("[SCOmponent UI warn]: The border_bottom property cannot be used in buttons with the text, flat, tonal and plain type!");
+            }
+        }
+
+        if(data.adjust) {
+            document.getElementById(id).style.width = document.getElementById(id).parentElement.offsetWidth + "px";
+            document.getElementById(id).style.height = document.getElementById(id).parentElement.offsetHeight + "px";
+        }
+
+        if(data.ripple_color) {
+            if (data.type !== "text" && data.type !== "plain") {
+                if (data.ripple_color.charAt(0) !== "-") document.getElementById(id).style.setProperty('--ripple-color', data.ripple_color);
+                else data.ripple_color = "var(" + data.bg + ")";
+                document.getElementById(id).style.setProperty('--ripple-color', data.ripple_color);
+            } else {
+                console.warn('[SCOmponent UI warn]: The ripple_color property cannot be used in buttons with the text and plain type! Use the bg property.');
+            }
+        }
+
+        if(data.ripple_width) document.getElementById(id).style.setProperty('--ripple-width', data.ripple_width);
+        if(data.ripple_height) document.getElementById(id).style.setProperty('--ripple-height', data.ripple_height);
+
+        if(data.color) {
+            if(data.color.charAt(0) !== "-")
+                document.getElementById(id).style.color = data.color;
+            else {
+                data.color = "var(" + data.color + ")";
+                document.getElementById(id).style.color = data.color;
+            }
+        }
+
+        if(data.time) {
+            if (!data.time.unit) console.warn("[SCOmponent UI warn]: Object time must have property unit!");
+            if (!data.time.value) console.warn("[SCOmponent UI warn]: Object time must have property value!");
+            if (data.time.value && data.time.unit) {
+                document.getElementById(key).style.setProperty("--time-ripple", String(data.time.value) + data.time.unit);
+                main(data.time.value);
+            }
+        }
+
+        if(data.height) document.getElementById(id).style.height = data.height;
+        if(data.width) document.getElementById(id).style.width = data.width;
+        if(data.min_width) document.getElementById(id).style.minWidth = data.min_width;
+        if(data.min_height) document.getElementById(id).style.minHeight = data.min_height;
+        if(data.max_width) document.getElementById(id).style.maxWidth = data.max_width;
+        if(data.max_height) document.getElementById(id).style.maxHeight = data.max_height;
+        if(data.text_transform) document.getElementById(id).style.textTransform = data.text_transform;
+        if(data.font_size) document.getElementById(id).style.fontSize = data.font_size;
+        if(data.font_family) document.getElementById(id).style.fontFamily = data.font_family;
+        if(data.font_weight) document.getElementById(id).style.fontWeight = data.font_weight;
+        if(data.decoration) document.getElementById(id).style.textDecoration = data.decoration;
+        if(data.line) document.getElementById(id).style.lineHeight = data.line;
+        if(data.spacing) document.getElementById(id).style.letterSpacing = data.spacing;
+
+        if(data.margin) {
+            if(data.margin.left) document.getElementById(id).style.marginLeft = data.margin.left;
+            if(data.margin.right) document.getElementById(id).style.marginRight = data.margin.right;
+            if(data.margin.bottom) document.getElementById(id).style.marginBottom = data.margin.bottom;
+            if(data.margin.top) document.getElementById(id).style.marginTop = data.margin.top;
+        }
+        if(data.padding) {
+            if(data.padding.left) document.getElementById(id).style.paddingLeft = data.padding.left;
+            if(data.padding.right) document.getElementById(id).style.paddingRight = data.padding.right;
+            if(data.padding.bottom) document.getElementById(id).style.paddingBottom = data.padding.bottom;
+            if(data.padding.top) document.getElementById(id).style.paddingTop = data.padding.top;
+        }
+
+        if(data.object_cls) {
+            if (document.getElementById(id).hasAttribute("class")) document.getElementById(id).classList.add(data.object_cls);
+            else document.getElementById(id).setAttribute("class", data.object_cls);
+        }
+
+        if(data.elevation) {
+            //TODO подумать насчёт разрешения elevation для всех типов кнопки.
+            if (typeof data.elevation === "string") document.getElementById(id).style.boxShadow = data.elevation;
+            if (typeof data.elevation === "number") document.getElementById(id).classList.add(`elevation-btn${data.elevation}`);
+        }
+
+        if(data.density) {
+            if (data.density === "default") document.getElementById(id).style.height = "36px";
+            if (data.density === "compact") document.getElementById(id).style.height = "24px";
+            if (data.density === "comfortable") document.getElementById(id).style.height = "28px";
+        }
+
+        if(data.rounded) {
+            if(data.rounded === "circle") document.getElementById(id).classList.add("button-icon");
+            if(data.rounded === "xs") document.getElementById(id).classList.add("button__rounded-xs");
+            if(data.rounded === "sm") document.getElementById(id).classList.add("button__rounded-sm");
+            if(data.rounded === "lg") document.getElementById(id).classList.add("button__rounded-lg");
+            if(data.rounded === "xl") document.getElementById(id).classList.add("button__rounded-xl");
+            else if (
+                data.rounded !== "xl" && data.rounded !== "lg" &&
+                data.rounded !== "default" && data.rounded !== "sm" && data.rounded !== "xs" &&
+                data.rounded !== "circle"
+            ) document.getElementById(id).style.borderRadius = data.rounded;
+        }
+
+        if(data.block) {
+            document.getElementById(id).classList.add("button-block");
+            document.getElementById(id).style.setProperty("--ripple-width", "10000px");
+            document.getElementById(id).style.setProperty("--ripple-height", "10000px");
+        }
+
+        if (data.prepend) {
+            if (data.prepend.src === undefined) console.warn("[SCOmponent UI warn]: Prepend must have src! (prepend object)");
+            else if (typeof data.prepend.src !== "string") throw new TypeError("Error! Src must have type string!");
+            else {
+                if(data.prepend.src.charAt(0) === "." || data.prepend.src.charAt(0) === "/" || data.prepend.src.charAt(0) === "~") {
+                    if(data.prepend.alt) {
+                        document.getElementById(id).innerHTML += `<span class="button__prepend"><img alt="${data.prepend.alt}" src="${data.prepend.src}">`;
+                        if (data.prepend.width) document.querySelector(`#${id} .button__prepend img`).style.width = data.prepend.width;
+                        if (data.prepend.height) document.querySelector(`#${id} .button__prepend img`).style.height = data.prepend.height;
+                        if (data.prepend.top) document.querySelector(`#${id} .button__prepend img`).style.marginBottom = data.prepend.top;
+                        if (data.prepend.bottom) document.querySelector(`#${id} .button__prepend img`).style.marginTop = data.prepend.bottom;
+                        if (data.prepend.left) document.querySelector(`#${id} .button__prepend img`).style.marginRight = data.prepend.left;
+                        if (data.prepend.right) document.querySelector(`#${id} .button__prepend img`).style.marginLeft = data.prepend.right;
+                    } else {
+                        console.warn("[SCOmponent UI warn]: Prepend must have alt!");
+                    }
+                } else {
+                    document.getElementById(id).innerHTML += `<span class="button__prepend"><i class="${data.prepend.src}" aria-hidden="true"></span>`
+                    if(data.prepend.left) document.querySelector(`#${id} .button__prepend i`).style.marginRight = data.prepend.left;
+                    if(data.prepend.right) document.querySelector(`#${id} .button__prepend i`).style.marginLeft = data.prepend.right;
+                    if(data.prepend.font_size) document.querySelector(`#${id} .button__prepend i`).style.fontSize = data.prepend.font_size;
+                    if(data.prepend.color) document.querySelector(`#${id} .button__prepend i`).style.color = data.prepend.color;
+                    if(data.prepend.bottom) document.querySelector(`#${id} .button__prepend i`).style.marginTop = data.prepend.bottom;
+                    if(data.prepend.top) document.querySelector(`#${id} .button__prepend i`).style.marginBottom = data.prepend.top;
+                }
+            }
+        }
+
+        if(data.append) {
+            if(data.append.src === undefined) console.warn("[SCOmponent UI warn]: Append must have src! (append object)");
+            else if(typeof data.append.src !== "string") throw new TypeError("Error! Src must have type string!");
+            else {
+                if (data.append.src.charAt(0) === "." || data.append.src.charAt(0) === "/" || data.append.src.charAt(0) === "~") {
+                    if(data.append.alt) {
+                        document.getElementById(id).innerHTML += `<span class="button__append"><img alt="${data.append.alt}" src="${data.append.src}>`;
+                        if(data.append.width) document.querySelector(`#${id} .button__append img`).style.width = data.append.width;
+                        if(data.append.height) document.querySelector(`#${id} .button__append img`).style.height = data.append.height;
+                        if(data.append.top) document.querySelector(`#${id} .button__append img`).style.marginBottom = data.append.top;
+                        if(data.append.bottom) document.querySelector(`#${id} .button__append img`).style.marginTop = data.append.bottom;
+                        if(data.append.left) document.querySelector(`#${id} .button__append img`).style.marginRight = data.append.left;
+                        if(data.append.right) document.querySelector(`#${id} .button__append img`).style.marginLeft = data.append.right;
+                    } else {
+                        console.warn("[SCOmponent UI warn]: Append must have alt!");
+                    }
+                } else {
+                    document.getElementById(id).innerHTML += `<span class="button__append"><i class="${data.append.src}" aria-hidden="true"></span>`;
+                    if(data.append.right) document.querySelector(`#${id} .button__append i`).style.marginLeft = data.append.right;
+                    if(data.append.left) document.querySelector(`#${id} .button__append i`).style.marginRight = data.append.left;
+                    if(data.append.top) document.querySelector(`#${id} .button__append i`).style.marginBottom = data.append.top;
+                    if(data.append.bottom) document.querySelector(`#${id} .button__append i`).style.marginTop = data.append.bottom;
+                    if(data.append.fontSize) document.querySelector(`#${id} .button__append i`).style.fontSize = data.append.fontSize;
+                    if(data.append.color) document.querySelector(`#${id} .button__append i`).style.color = data.append.color;
+                }
+            }
+        }
+
+        if(data.bg) {
+            if(data.type === "default" || !data.type) {
+                if (data.bg.charAt(0) !== "-") document.getElementById(id).style.background = data.bg;
+                else data.bg = "var(" + data.bg + ")";
+                document.getElementById(id).style.background = data.bg;
+            }
+            if(data.type === "outlined") {
+                console.warn("[SCOmponent UI warn]: The bg property cannot be used in buttons with the outlined type!");
+                return;
+            }
+            if(data.type === "text") {
+                if (data.bg.charAt(0) !== "-") document.getElementById(id).style.setProperty('--ripple-color', data.bg);
+                else data.bg = "var(" + data.bg + ")";
+                document.getElementById(id).style.setProperty('--ripple-color', data.bg);
+            }
+            if(data.type === "flat") {
+                if (data.bg.charAt(0) !== "-") document.getElementById(id).style.background = data.bg;
+                else data.bg = "var(" + data.bg + ")";
+                document.getElementById(id).style.background = data.bg;
+            }
+            if(data.type === "plain") {
+                if (data.bg.charAt(0) !== "-") document.getElementById(id).style.setProperty('--ripple-color', data.bg);
+                else data.bg = "var(" + data.bg + ")";
+                document.getElementById(id).style.setProperty('--ripple-color', data.bg);
+            }
+            if(data.type === "tonal") {
+                console.warn("[SCOmponent UI warn]: The bg property cannot be used in buttons with the tonal type!");
+                return;
+            }
+        }
+
+        if(data.disabled) {
+            document.getElementById(id).classList.remove("button");
+            document.getElementById(id).style = "";
+            document.getElementById(id).classList.add("button-disabled");
+        }
+    }
+}
