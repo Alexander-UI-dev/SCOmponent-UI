@@ -313,3 +313,289 @@ export class Btn {
         }
     }
 }
+
+* {
+  --time-ripple: 700ms;
+  --ripple-width: 500px;
+  --ripple-height: 500px;
+}
+.button {
+  --ripple-color: hsl(0, 0%, 86%);
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  padding: 10px;
+  height: 36px;
+  margin: 10px 0;
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: rgb(255, 255, 255);
+  user-select: none;
+  overflow: hidden;
+  outline: none;
+  border: 0;
+  box-shadow: 0px 3px 1px -2px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 2px 2px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12));
+  transition-property: box-shadow, transform, opacity, background;
+  transition-duration: 0.28s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover {
+  box-shadow: 0px 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 4px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 10px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12))
+}
+
+
+.button-active {
+  background-color: #eaeaea;
+}
+
+.button-disabled {
+  position: relative;
+  display: flex;
+  cursor: auto;
+  box-shadow: none;
+  background-color: #e1e1e1;
+  color: #a7a7a7;
+  padding: 10px;
+  margin: 10px 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  user-select: none;
+  overflow: hidden;
+  outline: none;
+  border: 0;
+}
+
+.button-disabled:hover {
+  box-shadow: none;
+}
+
+.button__content {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: system-ui, sans-serif;
+}
+
+.button-icon {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+}
+
+.ripples {
+  position: absolute;
+  background-color: var(--ripple-color);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: ripple var(--time-ripple) linear infinite;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: var(--ripple-width);
+    height: var(--ripple-height);
+    opacity: 0;
+  }
+}
+
+
+.button__prepend {
+  order: -1;
+}
+
+.button__append {
+  order: 1;
+}
+
+.button-variant--outline {
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+  border: thin solid currentColor;
+  color: black;
+}
+
+.button-variant--outline:hover {
+  box-shadow: 0 0 0 0;
+  background-color: rgb(238, 238, 238, 49%);
+}
+
+.button-variant--text {
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+  border: 0;
+  color: black;
+}
+
+.button-variant--text:hover {
+  box-shadow: 0 0 0 0;
+  background-color: rgb(238, 238, 238, 49%);
+}
+
+.button-variant--flat {
+  --ripple-color: #a8a8a8;
+  box-shadow: 0 0 0 0;
+}
+
+.button-variant--flat:hover {
+  box-shadow: 0 0 0 0;
+  background-color: #eaeaea;
+}
+
+.button-variant--plain {
+  box-shadow: 0 0 0 0;
+  color: black;
+  background-color: transparent;
+}
+
+.button-variant--plain:hover {
+  box-shadow: 0 0 0 0;
+}
+
+.button-variant--tonal {
+  --ripple-color: currentColor;
+  box-shadow: 0 0 0 0;
+}
+
+.button-variant--tonal:hover {
+  box-shadow: 0 0 0 0;
+}
+
+.button__underlay {
+  background-color: currentColor;
+  opacity: 0.12;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.button__rounded-xs {
+  border-radius: 4px;
+}
+
+.button__rounded-sm {
+  border-radius: 2px;
+}
+
+.button__rounded-lg {
+  border-radius: 8px;
+}
+
+.button__rounded-xl {
+  border-radius: 24px;
+}
+
+.button-block {
+  width: 100%;
+}
+
+/*elevation-variants*/
+.elevation-btn1 {
+  box-shadow: 0px 2px 1px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 1px 1px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 3px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn2 {
+  box-shadow: 0px 3px 1px -2px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 2px 2px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn3 {
+  box-shadow: 0px 3px 3px -2px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 3px 4px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 8px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn4 {
+  box-shadow: 0px 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 4px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 10px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn5 {
+  box-shadow: 0px 3px 5px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 5px 8px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 14px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn6 {
+  box-shadow: 0px 3px 5px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 6px 10px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 1px 18px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn7 {
+  box-shadow: 0px 4px 5px -2px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 7px 10px 1px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 2px 16px 1px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn8 {
+  box-shadow: 0px 5px 5px -3px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 8px 10px 1px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 3px 14px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn9 {
+  box-shadow: 0px 5px 6px -3px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 9px 12px 1px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 3px 16px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn10 {
+  box-shadow: 0px 6px 6px -3px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 10px 14px 1px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 4px 18px 3px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn11 {
+  box-shadow: 0px 6px 7px -4px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 11px 15px 1px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 4px 20px 3px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn12 {
+  box-shadow: 0px 7px 8px -4px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 12px 17px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 5px 22px 4px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn13 {
+  box-shadow: 0px 7px 8px -4px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 13px 19px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 5px 24px 4px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn14 {
+  box-shadow: 0px 7px 9px -4px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 14px 21px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 5px 26px 4px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn15 {
+  box-shadow: 0px 8px 9px -5px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 15px 22px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 6px 28px 5px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn16 {
+  box-shadow: 0px 8px 10px -5px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 16px 24px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 6px 30px 5px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn17 {
+  box-shadow: 0px 8px 11px -5px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 17px 26px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 6px 32px 5px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn18 {
+  box-shadow: 0px 9px 11px -5px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 18px 28px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 7px 34px 6px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn19 {
+  box-shadow: 0px 9px 12px -6px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 19px 29px 2px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 7px 36px 6px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn20 {
+  box-shadow: 0px 10px 13px -6px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 20px 31px 3px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 8px 38px 7px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn21 {
+  box-shadow: 0px 10px 13px -6px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 21px 33px 3px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 8px 40px 7px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn22 {
+  box-shadow: 0px 10px 14px -6px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 22px 35px 3px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 8px 42px 7px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn23 {
+  box-shadow: 0px 11px 14px -7px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 23px 36px 3px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 9px 44px 8px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
+
+.elevation-btn24 {
+  box-shadow: 0px 11px 15px -7px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)), 0px 24px 38px 3px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)), 0px 9px 46px 8px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12)) !important;
+}
